@@ -15,7 +15,8 @@
 - `docker compose exec -it gravitlauncher /bin/bash` войти в консоль bash
 - `docker compose cp gravitlauncher:SRCPATH DSTPATH` скопировать файл SRCPATH из контейнера в DSTPATH (на хост машину)
 - `docker compose cp SRCPATH gravitlauncher:DSTPATH` скопировать файл SRCPATH в DSTPATH в контейнере (из хост машины)
-
+- `tar -c SRCPATH | ssh user@host "cd PATH_TO_DOCKERED && docker compose exec gravitlauncher bash -c 'cd DSTPATH && tar -x'"` скопировать файл SRCPATH(* если все файлы) с локальной машины на хост и поместить их в контейнер в папку DSTPATH
+- `ssh user@host "cd PATH_TO_DOCKERED && docker compose exec gravitlauncher bash -c 'cd SRCPATH && tar -c SRCFILE'" | tar -x` скопировать файл SRCFILE(* если все файлы) по пути SRCPATH с хоста на локальную машину в текущую папку
 
 ## Структура контейнера
 
