@@ -43,9 +43,14 @@ upstream gravitlauncher {
     server 127.0.0.1:17549;
 }
 
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+}
+
 server {
     listen 80;
-    server launcher.mydomain.ru;
+    server_name launcher.mydomain.ru;
 
     charset utf-8;
     #access_log  /var/log/nginx/launcher.access.log;
