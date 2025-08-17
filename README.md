@@ -1,3 +1,9 @@
+# Установка
+- Скачайте репозиторий с помощью команды `git clone https://github.com/GravitLauncher/LauncherDockered.git`
+- Настройте **внешний** вдрес лаунчсервера и имя проекта в файле `docker-compose.yml` (обратите внимание - не указывайте порт в параметре `ADDRESS`, так как это приведет к изменению порта внутри docker сети)
+- Соберите и запустите контейнеры командой `docker compose up -d --build`
+- Следуйте дальнейшим инструкциям на вики
+
 # Launcher in Docker
 Команды для работы с GravitLauncher в Docker:
 - `docker compose up -d --build` установить/обновить лаунчсервер
