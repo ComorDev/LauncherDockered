@@ -8,6 +8,9 @@ services:
         tty: true
         volumes:
         - launcher:/app/data
+         environment:
+            ADDRESS: "example.com"
+            PROJECTNAME: "GravitLauncher"
     nginx:
         build:
             context: .
