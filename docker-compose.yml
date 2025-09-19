@@ -1,15 +1,13 @@
 services:
     gravitlauncher:
-        build:
-            context: .
-            dockerfile: Dockerfile.launcher
+        image: ghcr.io/gravitlauncher/launcher:sha-3dc56a3
         restart: always
         stdin_open: true
         tty: true
         volumes:
         - launcher:/app/data
         environment:
-            ADDRESS: "example.com"
+            ADDRESS: "localhost:17549"
             PROJECTNAME: "GravitLauncher"
     nginx:
         build:
