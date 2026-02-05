@@ -1,24 +1,28 @@
 services:
-    gravitlauncher:
-        image: ghcr.io/gravitlauncher/launcher:v5.7.6
-        restart: always
-        stdin_open: true
-        tty: true
-        volumes:
-        - launcher:/app/data
-        environment:
-            ADDRESS: "localhost:17549"
-            PROJECTNAME: "GravitLauncher"
-    nginx:
-        build:
-            context: .
-            dockerfile: Dockerfile.nginx
-        restart: always
-        volumes:
-            - launcher:/volume
-        ports:
-            - 17549:80
-        depends_on:
-            - gravitlauncher
+  gravitlauncher:
+    image: ghcr.io/gravitlauncher/launcher:v5.7.6
+    restart: always
+    stdin_open: true
+    tty: true
+    volumes:
+      - launcher:/app/data
+    env_file: .env
+
+  nginx:
+    image: nginx:stable
+    restart: always
+    ports:
+      - "17549:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - launcher:/volume
+    depends_on:
+      - gravitlauncher
+
 volumes:
-    launcher:
+  launcher:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./launcher
